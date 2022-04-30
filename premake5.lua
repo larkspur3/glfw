@@ -1,34 +1,35 @@
 project "GLFW"
-  kind "StaticLib"
-  language "C"
+	kind "StaticLib"
+	language "C"
 
-  targetdir("bin/" .. outputDir .. "%{prj.name}")
-  objdir("obj/" .. outputDir .. "%{prj.name}")
+	targetdir("bin/" .. outputDir .. "%{prj.name}")
+	objdir("obj/" .. outputDir .. "%{prj.name}")
 
-  files
-  {
-    "include/GLFW/glfw3.h",
-    "include/GLFW/glfw3native.h",
-    "src/glfw_config.h",
-    "src/context.c",
-    "src/init.c",
-    "src/input.c",
-    "src/monitor.c",
-    
-    "src/null_init.c",
-    "src/null_joystick.c",
-    "src/null_monitor.c",
-    "src/null_window.c",
-  
-    "src/platform.c",
-    "src/vulkan.c",
-    "src/window.c"
-  }
+	files
+	{
+		"include/GLFW/glfw3.h",
+		"include/GLFW/glfw3native.h",
+		"src/glfw_config.h",
+		"src/context.c",
+		"src/init.c",
+		"src/input.c",
+		"src/monitor.c",
+		
+		"src/null_init.c",
+		"src/null_joystick.c",
+		"src/null_monitor.c",
+		"src/null_window.c",
+		
+		"src/platform.c",
+		"src/vulkan.c",
+		"src/window.c"
+	}
 
-  filter "system:windows"
-    systemversion "latest"
+	filter "system:windows"
+		systemversion "latest"
+		staticruntime "On"
 
-    files
+		files
 		{
 			"src/win32_init.c",
 			"src/win32_joystick.c",
@@ -41,14 +42,13 @@ project "GLFW"
 			"src/egl_context.c",
 			"src/osmesa_context.c"
 		}
-    
+
 		defines 
 		{ 
 			"_GLFW_WIN32",
 			"_CRT_SECURE_NO_WARNINGS"
 		}
-
-  
+		
 	filter "configurations:Debug"
 		runtime "Debug"
 		symbols "on"
@@ -60,5 +60,4 @@ project "GLFW"
 	filter "configurations:Dist"
 		runtime "Release"
 		optimize "on"
-
-  symbols "off"
+		symbols "off"
